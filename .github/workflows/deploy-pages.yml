@@ -85,6 +85,20 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
+                - name: Checkout Quick Icon Converter
+        uses: actions/checkout@v4
+        with:
+          repository: strailico5327/quick-icon-converter
+          ref: web
+          path: sources/quick-icon-converter
+
+      - name: Copy Quick Icon Converter
+        run: |
+          mkdir -p public/quick-icon-converter
+          rsync -a \
+            --exclude '.git' \
+            --exclude '.github' \
+            sources/quick-icon-converter/ public/quick-icon-converter/
 
   deploy:
     runs-on: ubuntu-latest
