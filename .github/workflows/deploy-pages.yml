@@ -81,11 +81,7 @@ jobs:
           mkdir -p public/ttf2woff2-converter
           rsync -a sources/ttf2woff2-converter/dist/ public/ttf2woff2-converter/
 
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
-                - name: Checkout Quick Icon Converter
+      - name: Checkout Quick Icon Converter
         uses: actions/checkout@v4
         with:
           repository: strailico5327/quick-icon-converter
@@ -99,6 +95,11 @@ jobs:
             --exclude '.git' \
             --exclude '.github' \
             sources/quick-icon-converter/ public/quick-icon-converter/
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
 
   deploy:
     runs-on: ubuntu-latest
